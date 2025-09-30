@@ -1,0 +1,8 @@
+- name: nginx remove
+  hosts: frontend
+  become: yes
+  tasks:
+  - name: remove nginx
+    ansible.builtin.package:
+     name: nginx
+     state: absent
