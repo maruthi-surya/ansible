@@ -1,0 +1,8 @@
+- name: install java
+  hosts: frontend
+  become: yes
+  tasks:
+  - name: Install OpenJDK 11 on RHEL/CentOS
+    ansible.builtin.dnf:
+     name: java-11-openjdk-devel
+     state: absent
