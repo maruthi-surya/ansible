@@ -4,5 +4,8 @@
   tasks:
   - name: Install OpenJDK 11 on RHEL/CentOS
     ansible.builtin.dnf:
-     name: java-11-openjdk
+     name: "{{ item }}"
      state: absent
+    loop:
+     - java-11-openjdk
+     - java-11-openjdk-devel
