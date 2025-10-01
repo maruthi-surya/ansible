@@ -1,0 +1,11 @@
+- name: task level vars calling
+  hosts: local
+  connection: local
+  vars:
+   name: john
+  tasks:
+  - name: task level vars calling
+    ansible.builtin.debug:
+    vars:
+     name: joe
+    msg: "{{ name }}" 
