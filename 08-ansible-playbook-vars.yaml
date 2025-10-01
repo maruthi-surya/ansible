@@ -1,0 +1,10 @@
+- name: variable calling
+  hosts: local
+  connection: local
+  become: yes
+  vars:
+   name: john
+  tasks:
+  - name: variable printing
+    debug:
+     msg: "{{ name }}"
