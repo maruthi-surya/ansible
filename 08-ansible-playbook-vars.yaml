@@ -6,5 +6,5 @@
    stuname: john
   tasks:
   - name: variable printing
-    debug:
+    ansible.builtin.debug:
      msg: "{{ stuname }}"
