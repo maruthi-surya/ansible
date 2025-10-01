@@ -4,7 +4,8 @@
   become: yes
   vars:
    stuname: john
+   course: Devops
   tasks:
   - name: variable printing
     ansible.builtin.debug:
-     msg: "{{ stuname }}"
+     msg: "{{ stuname }}, {{ course }}"
