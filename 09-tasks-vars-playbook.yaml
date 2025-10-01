@@ -5,7 +5,7 @@
    name: john
   tasks:
   - name: task level vars calling
-    ansible.builtin.debug:
     vars:
      name: joe
-    msg: "{{ name }}" 
+    ansible.builtin.debug:
+     msg: "{{ name }}" 
