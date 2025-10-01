@@ -4,6 +4,6 @@
   become: yes
   tasks:
   - name: nginx uninstall
-    ansible.builtin.package:
+    dnf:
      name: nginx
      state: absent 
