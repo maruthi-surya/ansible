@@ -1,11 +1,12 @@
 - name: variable calling
   hosts: local
   connection: local
-  become: yes
+  # become: yes
   vars:
    stuname: john
    course: Devops
   tasks:
   - name: variable printing
-    ansible.builtin.debug:
+   # ansible.builtin.debug:
+    debug:
      msg: "{{ stuname }}, {{ course }}"
