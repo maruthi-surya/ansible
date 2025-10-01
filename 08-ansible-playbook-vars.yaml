@@ -3,8 +3,8 @@
   connection: local
   become: yes
   vars:
-   name: john
+   stuname: john
   tasks:
   - name: variable printing
     debug:
-     msg: "{{ name }}"
+     msg: "{{ stuname }}"
