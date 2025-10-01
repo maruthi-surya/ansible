@@ -1,0 +1,8 @@
+- name: nginx local uninstall
+  hosts: local
+  connection: local
+  become: yes
+  tasks:
+  - name: nginx uninstall
+    name: nginx
+    state: absent 
