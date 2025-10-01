@@ -8,4 +8,4 @@
     vars:
      stuname: joe
     ansible.builtin.debug:
-     msg: "{{ name }}" 
+     msg: "{{ stuname }}" 
