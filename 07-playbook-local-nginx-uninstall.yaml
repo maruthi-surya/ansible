@@ -3,5 +3,6 @@
   connection: local
   become: yes
   tasks:
-   name: nginx
-   state: absent 
+  - name: nginx uninstall
+  name: nginx
+  state: absent 
