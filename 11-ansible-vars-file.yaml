@@ -1,0 +1,9 @@
+- name: vars file
+  hosts: local
+  connection: local
+  vars_files:
+  - course.yaml
+  tasks:
+  - name: vars calling
+    debug:
+     msg: "course name: {{ course }}, duration is: {{ duration }}"
