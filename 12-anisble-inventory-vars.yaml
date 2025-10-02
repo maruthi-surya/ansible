@@ -1,0 +1,7 @@
+- name: vars calling from inventory file
+  hosts: local
+  connection: local
+  tasks:
+  - name: course info
+    debug:
+     msg: "user is: {{ username }}, password is: {{ password }}"
