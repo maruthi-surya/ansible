@@ -4,4 +4,4 @@
   tasks:
   - name: course info
     debug:
-     msg: "user is: {{ username }}, password is: {{ password }}"
+     msg: "course name: {{ course }}, duration is: {{ duration }}"
