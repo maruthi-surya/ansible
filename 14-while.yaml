@@ -1,0 +1,9 @@
+- name: print number based on condition
+  hosts: local
+  connection: local
+  number: 5
+  tasks:
+  - name: print number
+    ansible.builtin.debug:
+     msg: given number {{ number }} is les  than 10
+    while: 5 < 10 
