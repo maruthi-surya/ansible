@@ -1,0 +1,13 @@
+- name: installation loop
+  hosts: local
+  connection: local
+  become: yes
+  taks:
+   - name: installation loop
+     ansible.builtin.package:
+      name: " {{ item }} "
+      state: latest
+     loop:
+     - nginx
+     - zip 
+
