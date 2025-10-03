@@ -1,0 +1,23 @@
+- name: play-01 and task-01
+  hosts: local
+  connection: local
+  tasks: 
+  - name: play-01 and task-01
+    ansible.builtin.debug:
+     msg: "Play-01 and Task-02"
+
+  - name: Play-01 and Task-02
+    ansible.builtin.debug:
+     msg: "Play-01 and Task-02"
+
+- name: Play-02 and Task-01
+  hosts: local
+  connection: local
+  tasks:
+   - name: Play-02 and Task-01
+     ansible.builtin.debug:
+      msg: "Play-02 and Task-01"
+
+   - name: Play-02 and Task-02
+     ansible.builtin.debug:
+      msg: "Play-02 and Task-02"          
