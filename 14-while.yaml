@@ -1,10 +1,10 @@
-- name: print number based on condition
+- name: print condtion based on condition
   hosts: local
   connection: local
   vars:
    number: 5
   tasks:
-  - name: print number
+  - name: condition check
     ansible.builtin.debug:
      msg: " given number {{ number }} is les  than 10 "
     while: number < 10 
