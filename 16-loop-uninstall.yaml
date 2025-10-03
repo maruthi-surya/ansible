@@ -1,0 +1,12 @@
+- name: loop uninstall
+  hosts: local
+  connection: local
+  become: yes
+  tasks:
+   - name: uninstall
+     ansible.builtin.package:
+      name: " {{ item }} "
+      state: absent
+     loop:
+      - nginx
+      - zip 
