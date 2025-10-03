@@ -2,7 +2,7 @@
   hosts: local
   connection: local
   become: yes
-  taks:
+  tasks:
    - name: installation loop
      ansible.builtin.package:
       name: " {{ item }} "
