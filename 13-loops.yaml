@@ -1,0 +1,11 @@
+- name: print names
+  hosts: local
+  connection: local
+  tasks:
+  - name: print names
+    ansible.builtin.debug:
+     msg: "course name is: {{ item }}"
+    loop:
+    - ansible
+    - teraform
+    - jenkins 
