@@ -8,4 +8,4 @@
 
   - name: print 
     debug:
-    var: result.stdout
+     var: result.stdout
