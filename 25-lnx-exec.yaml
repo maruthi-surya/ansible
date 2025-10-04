@@ -11,4 +11,4 @@
     - name: Check result
       debug:
         msg: "nginx is installed"
-      when: nginx_check == 0
+      when: nginx_check.rc == 0
