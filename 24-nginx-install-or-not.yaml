@@ -1,0 +1,11 @@
+- name: nginx check
+  hosts: local
+  connection: local
+  tasks:
+  - name: nginx check
+    ansible.builtin.command: dnf list installed nginx
+    register: result
+
+  - name: print 
+    debug:
+    var: result.stdout
