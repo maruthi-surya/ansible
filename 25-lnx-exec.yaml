@@ -13,7 +13,7 @@
         msg: "nginx is installed"
       when: nginx_check.rc == 0
 
-    - name: Check result
+    - name: Check result not
       debug:
         msg: "nginx not installed"
       when: nginx_check.rc != 0
