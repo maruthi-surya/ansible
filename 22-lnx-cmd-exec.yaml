@@ -13,14 +13,13 @@
   - name: print user status
     ansible.builtin.command: dnf list installed {{item}}
     register: result
-    loop:
-    - nginx
-    - zip
-
 
   - name: print result
     debug:
      var: "{{result.stdout}}"   
+    loop:
+    - nginx
+    - zip
 
   # - name: print result
   #   ansible.builtin.command: dnf list installed zip
