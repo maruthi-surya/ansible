@@ -13,6 +13,8 @@
   - name: print user status
     ansible.builtin.command: dnf list installed {{item}}
     register: result
+    
+  - name: print tasks  
     debug:
     var: "{{result.stdout}}"
     loop:
