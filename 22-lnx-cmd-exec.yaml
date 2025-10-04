@@ -9,3 +9,11 @@
   - name: print result
     debug:
      var: "{{result.stdout}}"
+
+  - name: print user status
+    ansible.builtin.command: dnf list installed nginx
+    register: result
+
+  - name: print result
+    debug:
+     var: "{{result.stdout}}"   
