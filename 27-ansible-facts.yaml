@@ -1,0 +1,19 @@
+- name: Check if nginx is installed using package facts
+  hosts: all
+  become: true
+  gather_facts: false  # speeds things up if you're not using other facts
+
+  tasks:
+    - name: Gather installed package facts
+      ansible.builtin.package_facts:
+        manager: auto  # auto-detects the package manager (apt, yum, etc.)
+
+    - name: Print if nginx is installed
+      debug:
+        msg: "nginx is installed"
+      when: "'nginx' in ansible_facts.packages"
+
+    - name: Print if nginx is NOT installed
+      debug:
+        msg: "nginx is NOT installed"
+      when: "'nginx' not in ansible_facts.packages"
