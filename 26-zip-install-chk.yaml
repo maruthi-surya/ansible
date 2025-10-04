@@ -1,0 +1,12 @@
+- name: zip install check
+  hosts: local
+  connection: local
+  tasks:
+  - name: zip check
+    shell: dnf list installed zip
+    register: zip_check
+
+  - name: print outcome
+    debug:
+     msg: "zp installed"
+    when: zip_check.stdout.rc == 0  
