@@ -1,7 +1,7 @@
 - name: lnx cmd executing
   hosts: local
   connection: local
-  gather_facts: false
+  # gather_facts: false
 
   tasks:
     - name: Print user ID
@@ -18,7 +18,7 @@
         - nginx
         - zip
       register: package_check
-      ignore_errors: true  # Optional: in case some packages are not installed
+      # ignore_errors: true  # Optional: in case some packages are not installed
 
     - name: Print package check results
       debug:
