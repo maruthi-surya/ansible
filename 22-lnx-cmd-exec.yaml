@@ -11,7 +11,7 @@
      var: "{{result.stdout}}"
 
   - name: print user status
-    ansible.builtin.command: dnf list installed nginx
+    ansible.builtin.shell: dnf list installed nginx
     register: result
 
   - name: print result
