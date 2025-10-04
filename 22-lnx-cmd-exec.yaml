@@ -11,7 +11,15 @@
      var: "{{result.stdout}}"
 
   - name: print user status
-    ansible.builtin.shell: dnf list installed nginx
+    ansible.builtin.command: dnf list installed nginx
+    register: result
+
+  - name: print result
+    debug:
+     var: "{{result.stdout}}"   
+
+  - name: print result
+    ansible.builtin.command: dnf list installed zip
     register: result
 
   - name: print result
