@@ -4,7 +4,7 @@
   tasks:
     - name: Gather installed package facts
       ansible.builtin.package_facts:
-        manager: dnf  # auto-detects the package manager (apt, yum, etc.)
+        manager: yum  # auto-detects the package manager (apt, yum, etc.)
 
     - name: Print if nginx is installed
       debug:
