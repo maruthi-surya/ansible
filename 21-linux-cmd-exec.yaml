@@ -4,3 +4,8 @@
   tasks:
   - name: lnx cmd executing
     ansible.builtin.shell: ls -la /home/ec2-user/ansible
+    register: result
+
+  - name: Show the command output
+    debug:
+     var: result.stdout
