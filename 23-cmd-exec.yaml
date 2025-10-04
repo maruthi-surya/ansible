@@ -1,0 +1,26 @@
+- name: lnx cmd executing
+  hosts: local
+  connection: local
+  gather_facts: false
+
+  tasks:
+    - name: Print user ID
+      ansible.builtin.command: id -u
+      register: user_id
+
+    - name: Show user ID
+      debug:
+        var: user_id.stdout
+
+    - name: Check installed packages
+      ansible.builtin.command: "dnf list installed {{ item }}"
+      loop:
+        - nginx
+        - zip
+      register: package_check
+      ignore_errors: true  # Optional: in case some packages are not installed
+
+    - name: Print package check results
+      debug:
+        msg: "{{ item.stdout }}"
+      loop: "{{ package_check.results }}"
