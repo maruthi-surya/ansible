@@ -3,4 +3,4 @@
   connection: local
   tasks:
   - name: lnx cmd executing
-    ansible.builtin.command: ls -la /home/ec2-user/ansible
+    ansible.builtin.shell: ls -la /home/ec2-user/ansible
