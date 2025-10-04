@@ -1,0 +1,14 @@
+- name: Check if nginx is installed using shell
+  hosts: local
+  connection: local
+  # become: true
+  tasks:
+    - name: Run dnf list
+      shell: dnf list installed nginx
+      register: nginx_check
+      # ignore_errors: true
+
+    - name: Check result
+      debug:
+        msg: "nginx is installed"
+      when: nginx_check.rc == 0
