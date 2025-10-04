@@ -1,7 +1,8 @@
 - name: Check if nginx is installed using package facts
-  hosts: all
-  become: true
-  gather_facts: false  # speeds things up if you're not using other facts
+  hosts: local
+  connection: local
+  # become: true
+  # gather_facts: false  # speeds things up if you're not using other facts
 
   tasks:
     - name: Gather installed package facts
