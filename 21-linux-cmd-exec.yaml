@@ -8,4 +8,4 @@
 
   - name: Show the command output
     debug:
-     var: result.stdout
+     var: "result.stdout"
