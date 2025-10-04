@@ -2,9 +2,9 @@
   hosts: local
   connection: local
   tasks:
-    - name: Gather installed package facts
-      ansible.builtin.package_facts:
-        manager: auto # auto-detects the package manager (apt, yum, etc.)
+    # - name: Gather installed package facts
+    #   ansible.builtin.package_facts:
+    #     manager: auto # auto-detects the package manager (apt, yum, etc.)
 
     - name: Print if nginx is installed
       debug:
