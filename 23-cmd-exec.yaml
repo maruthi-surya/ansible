@@ -10,7 +10,7 @@
 
     - name: Show user ID
       debug:
-        msg: user_id.stdout
+        var: user_id.stdout
 
     - name: Check installed packages
       ansible.builtin.command: "dnf list installed {{ item }}"
