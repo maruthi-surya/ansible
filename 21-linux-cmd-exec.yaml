@@ -1,0 +1,6 @@
+- name: executing linux command
+  hosts: local
+  condition: local
+  tasks:
+  - name: linux cmd executing
+    ansible.builtin.command: ls -la /home/ec2-user/ansible
