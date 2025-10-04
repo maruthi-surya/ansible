@@ -3,7 +3,7 @@
   connection: local
   tasks:
   - name: lnx cmd executing
-    ansible.builtin.shell: ls -la /home/ec2-user/ansible
+    ansible.builtin.command: ls -la /home/ec2-user/ansible
     register: result
 
   - name: Show the command output
