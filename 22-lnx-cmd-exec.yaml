@@ -1,0 +1,11 @@
+- name: lnx cmd executing
+  hosts: local
+  connection: local
+  tasks:
+  - name: print user status
+    ansible.builtin.command: id -u
+    register: result
+
+  - name: print result
+    debug:
+     var: "{{result.stdout}}"
