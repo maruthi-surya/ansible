@@ -9,4 +9,4 @@
   - name: print outcome
     debug:
      msg: "zp installed"
-    when: zip_check.stdout.rc == 0  
+    when: zip_check.rc == 0  
