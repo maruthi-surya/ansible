@@ -6,11 +6,11 @@
   tasks:
     - name: Print user ID
       ansible.builtin.command: id -u
-      register: result
+      register: user_id
 
     - name: Show user ID
       debug:
-        msg: result.stdout
+        msg: user_id.stdout
 
     - name: Check installed packages
       ansible.builtin.command: "dnf list installed {{ item }}"
