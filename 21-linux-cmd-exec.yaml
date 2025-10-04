@@ -1,6 +1,6 @@
-- name: executing linux command
+- name: executing lnx command
   hosts: local
-  condition: local
+  connection: local
   tasks:
-  - name: linux cmd executing
+  - name: lnx cmd executing
     ansible.builtin.command: ls -la /home/ec2-user/ansible
