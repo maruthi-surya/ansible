@@ -1,0 +1,9 @@
+- name: string convert to lower
+  hosts: local
+  connection: local
+  vars:
+   name: "JOHN IS BOSS"
+  tasks:
+  - name: string convertion
+    ansible.builtin.debug:
+     msg: "string converted to lower case: {{ name | lower }}"
