@@ -4,7 +4,7 @@
   become: yes
   tasks:
   - name: check user exist or not
-    ansible.builtin.command: id roboshop11
+    ansible.builtin.command: id roboshop111
     register: user_output
     ignore_errors: true
 
@@ -13,12 +13,13 @@
      msg: "{{ user_output }}"
 
   - name: create user
-    ansible.builtin.command: useradd roboshop11
+    ansible.builtin.command: useradd roboshop111
     register: user_created
     when: user_output .rc != 0
 
 
   - name: print created user
     ansible.builtin.debug:
-     msg: "{{ user_created }}"
+     msg: "user created successfully"
+    when: user_created.rc == 0
          
