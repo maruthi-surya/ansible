@@ -14,11 +14,11 @@
 
   - name: create user
     ansible.builtin.command: useradd roboshop111
-    register: user_created
+    # register: user_created
     when: user_output .rc != 0
 
-  - name: print created user
-    ansible.builtin.debug:
-     msg: "user created successfully"
-    when: user_created.rc == 0
+  # - name: print created user
+  #   ansible.builtin.debug:
+  #    msg: "user created successfully"
+  #   when: user_created.rc == 0
          
