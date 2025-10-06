@@ -17,7 +17,6 @@
     register: user_created
     when: user_output .rc != 0
 
-
   - name: print created user
     ansible.builtin.debug:
      msg: "user created successfully"
