@@ -2,8 +2,8 @@
   hosts: local
   connection: local
   vars:
-   name: "JOHN IS BOSS"
+   stu_name: "JOHN IS BOSS"
   tasks:
   - name: string convertion
     ansible.builtin.debug:
-     msg: "string converted to lower case: {{ name | lower }}"
+     msg: "string converted to lower case: {{ stu_name | lower }}"
