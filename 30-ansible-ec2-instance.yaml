@@ -1,0 +1,26 @@
+- name: ec2 instance creation
+  hosts: local
+  connection: local
+  vars:
+   ami_id: ami-09c813fb71547fc4f
+   sg_id: sg-02704cfa1a0558868
+   zone_id: Z09770583FTSAJKH9PBLF
+   domain_name: "daws-practice.fun"   
+   instances:
+   - mongodb
+  tasks:
+  - name: create ec2 instance
+    amazon.aws.ec2_instance:
+     name: "{{ item }}"
+     instance_type: t3.micro
+     security_group: "{{ sg_id }}"
+     image_id: "{{ ami_id }}"
+     tags:
+      name: "{{ item }}"
+    loop: "{{ instances }}"
+    register: ec2_output
+
+  - name: print the ec2 instance output
+    ansible.builtin.debug:
+     msg: "{{ ec2_output }}"  
+
