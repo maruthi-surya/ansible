@@ -3,7 +3,12 @@
   connection: local
   vars:
    stu_name: "JOHN IS BOSS"
+   emp_name: "john is king"
   tasks:
   - name: string convertion
     ansible.builtin.debug:
      msg: "string converted to lower case: {{ stu_name | lower }}"
+
+  - name: string convert to upper
+    ansible.builtin.debug:
+     msg: "{{ emp_name | upper }}"   
