@@ -1,6 +1,7 @@
 ---
 - name: Install Apache Tomcat on RHEL
-  hosts: all
+  hosts: local
+  connection: local
   become: yes
 
   vars:
