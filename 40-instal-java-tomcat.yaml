@@ -59,9 +59,9 @@
 
     - name: Ensure scripts are executable
       ansible.builtin.file:
-      path: /opt/tomcat/bin
-      recurse: yes
-      mode: '0755'   
+       path: /opt/tomcat/bin
+       recurse: yes
+       mode: '0755'   
 
     - name: Copying Tomcat service file from local to remote
       ansible.builtin.copy:
