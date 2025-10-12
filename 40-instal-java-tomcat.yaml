@@ -43,7 +43,7 @@
       ansible.builtin.user:
        name: tomcat
        comment: adding tomcat user to tomcat group
-       group: admin
+       group: tomcat
        home: /user/share/tomcat
        shell: /bin/bash
 
