@@ -1,0 +1,107 @@
+---
+- name: Install Apache Tomcat on RHEL
+  hosts: all
+  become: yes
+
+  vars:
+    tomcat_version: 10.1.47
+    tomcat_install_dir: /opt/tomcat
+    tomcat_user: tomcat
+    tomcat_group: tomcat
+    tomcat_service_name: tomcat
+
+  tasks:
+    - name: Ensure Java is installed
+      yum:
+        name: java-17-openjdk
+        state: present
+
+    - name: Create tomcat group
+      group:
+        name: "{{ tomcat_group }}"
+        state: present
+
+    - name: Create tomcat user
+      user:
+        name: "{{ tomcat_user }}"
+        group: "{{ tomcat_group }}"
+        create_home: no
+        shell: /bin/nologin
+        state: present
+
+    - name: Download Tomcat archive
+      get_url:
+        url: "https://downloads.apache.org/tomcat/tomcat-9/v{{ tomcat_version }}/bin/apache-tomcat-{{ tomcat_version }}.tar.gz"
+        dest: /tmp/apache-tomcat-{{ tomcat_version }}.tar.gz
+        mode: '0644'
+
+    - name: Create installation directory
+      file:
+        path: "{{ tomcat_install_dir }}"
+        state: directory
+        owner: "{{ tomcat_user }}"
+        group: "{{ tomcat_group }}"
+
+    - name: Extract Tomcat archive
+      unarchive:
+        src: /tmp/apache-tomcat-{{ tomcat_version }}.tar.gz
+        dest: "{{ tomcat_install_dir }}"
+        remote_src: yes
+        creates: "{{ tomcat_install_dir }}/apache-tomcat-{{ tomcat_version }}"
+
+    - name: Change ownership of Tomcat files
+      file:
+        path: "{{ tomcat_install_dir }}/apache-tomcat-{{ tomcat_version }}"
+        state: directory
+        recurse: yes
+        owner: "{{ tomcat_user }}"
+        group: "{{ tomcat_group }}"
+
+    - name: Symlink tomcat directory
+      file:
+        src: "{{ tomcat_install_dir }}/apache-tomcat-{{ tomcat_version }}"
+        dest: "{{ tomcat_install_dir }}/latest"
+        state: link
+        owner: "{{ tomcat_user }}"
+        group: "{{ tomcat_group }}"
+
+    - name: Create systemd service file for Tomcat
+      copy:
+        dest: /etc/systemd/system/{{ tomcat_service_name }}.service
+        content: |
+          [Unit]
+          Description=Apache Tomcat Web Application Container
+          After=network.target
+
+          [Service]
+          Type=forking
+
+          User={{ tomcat_user }}
+          Group={{ tomcat_group }}
+
+          Environment="JAVA_HOME=/usr/lib/jvm/jre"
+          Environment="CATALINA_PID={{ tomcat_install_dir }}/latest/temp/tomcat.pid"
+          Environment="CATALINA_HOME={{ tomcat_install_dir }}/latest"
+          Environment="CATALINA_BASE={{ tomcat_install_dir }}/latest"
+          Environment="CATALINA_OPTS=-Xms512M -Xmx1024M -server -XX:+UseParallelGC"
+
+          ExecStart={{ tomcat_install_dir }}/latest/bin/startup.sh
+          ExecStop={{ tomcat_install_dir }}/latest/bin/shutdown.sh
+
+          Restart=on-failure
+
+          [Install]
+          WantedBy=multi-user.target
+      notify:
+        - daemon-reload
+
+    - name: Start and enable Tomcat service
+      systemd:
+        name: "{{ tomcat_service_name }}"
+        state: started
+        enabled: yes
+
+  handlers:
+    - name: daemon-reload
+      systemd:
+        daemon_reload: yes
