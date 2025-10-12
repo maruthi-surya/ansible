@@ -31,8 +31,9 @@
     - name: unarchiving
       ansible.builtin.unarchive:
         src: /tmp/tomcat.zip
-        dest: /opt/tomcat
+        dest: /opt/
         remote_src: yes
+        extra_opts: [--strip-components=1]
 
     - name: Adding tomcat group
       ansible.builtin.group:
@@ -44,7 +45,7 @@
        name: tomcat
        comment: adding tomcat user to tomcat group
        group: tomcat
-       home: /user/share/tomcat
+       home: /opt/tomcat
        shell: /bin/bash
 
     - name: Changing ownership
@@ -56,10 +57,19 @@
         recurse: yes
         state: directory
 
+    - name: Ensure scripts are executable
+      ansible.builtin.file:
+      path: /opt/tomcat/bin
+      recurse: yes
+      mode: '0755    
+
     - name: Copying Tomcat service file from local to remote
       ansible.builtin.copy:
        src: tomcat.service
-       dest: /etc/systemd/system/
+       dest: /etc/systemd/system/tomcat.service
+       owner: root
+       group: root
+       mode: '0644
 
     - name: Starting and enabling Tomcat service
       ansible.builtin.systemd_service:
