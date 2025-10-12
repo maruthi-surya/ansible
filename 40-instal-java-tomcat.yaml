@@ -25,8 +25,8 @@
    
     - name: download tomcat from web
       ansible.builtin.get_url:
-       url: https://dlcdn.apache.org/tomcat/tomcat-10/v10.1.47/bin/apache-tomcat-10.1.47.tar.gz
-       dest: /tmp/tomcat.zip
+        url: https://dlcdn.apache.org/tomcat/tomcat-10/v10.1.47/bin/apache-tomcat-10.1.47.tar.gz
+        dest: /tmp/tomcat.tar.gz
 
     - name: unarchiving
       ansible.builtin.unarchive:
@@ -53,15 +53,15 @@
         path: /opt/tomcat
         owner: tomcat
         group: tomcat
-        mode: "u+rwx,g+rx,o=rx"
+        mode: '0755'
         recurse: yes
         state: directory
 
-    # - name: Ensure scripts are executable
-    #   ansible.builtin.file:
-    #   path: /opt/tomcat/bin
-    #   recurse: yes
-    #   mode: '0755'    
+    - name: Ensure scripts are executable
+      ansible.builtin.file:
+      path: /opt/tomcat/bin
+      recurse: yes
+      mode: '0755'   
 
     - name: Copying Tomcat service file from local to remote
       ansible.builtin.copy:
@@ -72,7 +72,7 @@
        mode: '0644'
 
     - name: Starting and enabling Tomcat service
-      ansible.builtin.systemd_service:
+      ansible.builtin.systemd:
         name: tomcat
         state: restarted
         enabled: true
